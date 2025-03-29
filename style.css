@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 15px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #4a6baf;
+    font-size: 1.5rem;
+}
+
+.mining-status {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+button {
+    background-color: #4a6baf;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.stats {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+footer {
+    display: flex;
+    gap: 10px;
+}
+
+/* Dark Mode do Telegram */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #1e1e1e;
+        color: #f5f5f5;
+    }
+    .mining-status, .stats {
+        background: #2d2d2d;
+    }
+    button {
+        background-color: #5a7bbf;
+    }
+}
