@@ -32,7 +32,7 @@ async def button_click(update, context):
         await query.edit_message_text("💸 Digite: /sacar 10 (para sacar 10 MOB)")
 
 # Configura o bot
-bot = Application.builder().token("7740897302:AAGBbCYLFt4HMf7ZjfPIJGYEAEb2QzGyp30").build()
+bot = Application.builder().token("").build()
 bot.add_handler(CommandHandler("start", start))
 bot.add_handler(CallbackQueryHandler(button_click))
 
