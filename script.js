@@ -1,5 +1,5 @@
 // Configurações
-const API_URL = "SUA_URL_DO_GOOGLE_APPS_SCRIPT"; // Substitua pela sua URL
+const API_URL = "https://docs.google.com/spreadsheets/d/1UMmNQwY8Y-aDBVOE8ix0OMOzqxvYtRVveVG2_b8gXzY/edit?usp=sharing; // Substitua pela sua URL
 
 // Elementos da UI
 const tg = window.Telegram.WebApp;
