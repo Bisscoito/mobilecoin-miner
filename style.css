@@ -1,170 +1,298 @@
+:root {
+    --crypto-primary: #00ffaa;
+    --crypto-secondary: #0077ff;
+    --crypto-dark: #0a0a12;
+    --crypto-darker: #050508;
+    --crypto-gray: #1a1a2e;
+    --crypto-alert: #ff5555;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Rajdhani', 'Courier New', monospace;
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #333;
-    padding: 15px;
+    background-color: var(--crypto-darker);
+    color: var(--crypto-primary);
     line-height: 1.6;
-}
-
-.container {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h1 {
-    color: #4a6baf;
-    font-size: 1.5rem;
-}
-
-.mining-status {
-    background: white;
-    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 15px;
-    text-align: center;
 }
 
-button {
-    background-color: #4a6baf;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    width: 100%;
-    margin: 5px 0;
-    cursor: pointer;
+.crypto-terminal {
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid var(--crypto-primary);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 170, 0.1);
 }
 
-.stats {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-footer {
-    display: flex;
-    gap: 10px;
-}
-
-/* Dark Mode do Telegram */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #1e1e1e;
-        color: #f5f5f5;
-    }
-    .mining-status, .stats {
-        background: #2d2d2d;
-    }
-    button {
-        background-color: #5a7bbf;
-    }
-}
-/* User Bar Styles */
-.user-bar {
-    background: #2c3e50;
-    color: white;
-    padding: 10px 15px;
+.crypto-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    background: linear-gradient(90deg, var(--crypto-dark), var(--crypto-gray));
+    padding: 15px;
+    border-bottom: 1px solid var(--crypto-primary);
     flex-wrap: wrap;
 }
 
-.user-info {
+.user-wallet, .crypto-balance {
     display: flex;
-    gap: 15px;
+    gap: 20px;
+}
+
+.crypto-user, .crypto-address, .balance-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.crypto-label {
+    color: var(--crypto-secondary);
+    font-weight: bold;
+    font-size: 0.9em;
 }
 
 [contenteditable="true"] {
-    padding: 3px 8px;
+    background: transparent;
+    color: var(--crypto-primary);
+    border: 1px solid transparent;
+    padding: 2px 5px;
+    min-width: 80px;
     border-radius: 3px;
-    min-width: 100px;
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
 }
 
 [contenteditable="true"]:focus {
-    background: #fff;
-    color: #333;
+    border: 1px solid var(--crypto-primary);
     outline: none;
+    background: rgba(0, 255, 170, 0.1);
 }
 
 [contenteditable="true"][data-placeholder]:empty:before {
     content: attr(data-placeholder);
-    color: #95a5a6;
+    color: #4a4a6d;
     font-style: italic;
 }
 
-.save-btn {
-    background: #27ae60;
-    color: white;
+.crypto-coin {
+    color: var(--crypto-secondary);
+    font-weight: bold;
+}
+
+.miner-dashboard {
+    padding: 25px;
+    text-align: center;
+    background: var(--crypto-dark);
+}
+
+.crypto-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: var(--crypto-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.miner-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: var(--crypto-gray);
+    padding: 15px 25px;
+    border-radius: 5px;
+    border: 1px solid var(--crypto-secondary);
+    min-width: 150px;
+}
+
+.stat-label {
+    color: var(--crypto-secondary);
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.off {
+    color: var(--crypto-alert);
+}
+
+.on {
+    color: var(--crypto-primary);
+    text-shadow: 0 0 8px rgba(0, 255, 170, 0.7);
+}
+
+.hash-bar {
+    width: 100%;
+    height: 20px;
+    background: var(--crypto-gray);
+    border-radius: 10px;
+    margin: 25px 0;
+    overflow: hidden;
+    border: 1px solid var(--crypto-secondary);
+}
+
+.hash-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--crypto-primary), var(--crypto-secondary));
+    border-radius: 10px;
+    transition: width 0.5s;
+}
+
+.miner-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.crypto-btn {
+    padding: 12px 25px;
     border: none;
-    padding: 5px 15px;
-    border-radius: 3px;
+    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
-    margin-left: 10px;
-    transition: background 0.3s;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.save-btn:hover {
-    background: #2ecc71;
+.mine-btn {
+    background: var(--crypto-primary);
+    color: var(--crypto-dark);
 }
 
-/* Miner Logs Styles */
-.miner-logs {
-    margin-top: 30px;
-    padding-top: 15px;
-    border-top: 1px solid #34495e;
+.mine-btn:hover {
+    background: transparent;
+    color: var(--crypto-primary);
+    box-shadow: 0 0 15px rgba(0, 255, 170, 0.5);
+    border: 1px solid var(--crypto-primary);
+}
+
+.stop-btn {
+    background: var(--crypto-alert);
+    color: white;
+}
+
+.stop-btn:hover {
+    background: transparent;
+    color: var(--crypto-alert);
+    box-shadow: 0 0 15px rgba(255, 85, 85, 0.5);
+    border: 1px solid var(--crypto-alert);
+}
+
+.save {
+    padding: 5px 10px;
+    background: var(--crypto-secondary);
+}
+
+.save:hover {
+    background: transparent;
+    color: var(--crypto-secondary);
+    border: 1px solid var(--crypto-secondary);
+}
+
+.crypto-logs {
+    background: var(--crypto-gray);
+    padding: 15px;
+    border-top: 1px solid var(--crypto-primary);
+}
+
+.logs-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--crypto-secondary);
+}
+
+.logs-title {
+    font-weight: bold;
+    color: var(--crypto-primary);
+}
+
+.logs-time {
+    color: var(--crypto-secondary);
 }
 
 .log-container {
     height: 200px;
     overflow-y: auto;
-    background: #1a1a1a;
-    border: 1px solid #34495e;
-    padding: 10px;
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
-    border-radius: 5px;
-    color: #ecf0f1;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 3px;
 }
 
 .log-entry {
     margin-bottom: 5px;
     padding-bottom: 3px;
-    border-bottom: 1px solid #2c3e50;
-    line-height: 1.4;
+    border-bottom: 1px solid rgba(0, 255, 170, 0.1);
+    color: #e0e0e0;
 }
 
-@media (max-width: 600px) {
-    .user-bar {
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--crypto-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--crypto-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--crypto-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .crypto-header {
         flex-direction: column;
-        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .user-wallet {
+        flex-direction: column;
         gap: 10px;
     }
     
-    .user-info {
-        width: 100%;
+    .miner-stats {
         flex-direction: column;
-        gap: 5px;
+        align-items: center;
+        gap: 15px;
     }
     
-    .save-btn {
-        margin-left: 0;
-        width: 100%;
+    .crypto-title {
+        font-size: 2rem;
     }
 }
