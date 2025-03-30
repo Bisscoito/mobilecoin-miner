@@ -2,36 +2,37 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MobileCoin Miner</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🛠️ MobileCoin Miner</h1>
-            <div id="balance">Saldo: 0 MOB</div>
-        </header>
-        
-        <main>
-            <div class="mining-status">
-                <div id="hashrate">0 H/s</div>
-                <button id="toggleMining">Iniciar Mineração</button>
+        <div class="user-bar">
+            <div class="user-info">
+                <span id="user-nick" contenteditable="true" data-placeholder="Seu Nick"></span>
+                <span id="wallet-address" contenteditable="true" data-placeholder="Endereço da Carteira"></span>
             </div>
-            
-            <div class="stats">
-                <div>⏱️ Tempo: <span id="time">00:00:00</span></div>
-                <div>📱 Dispositivo: <span id="device">--</span></div>
-                <div>👥 Indicados: <span id="referrals">0</span></div>
+            <div class="wallet-balance">
+                Saldo: <span id="wallet-balance">0.00 MOB</span>
             </div>
-        </main>
-        
-        <footer>
-            <button id="withdraw">Sacar MOB</button>
-            <button id="referral">🔗 Gerar Link de Indicação</button>
-        </footer>
+            <button id="save-btn" class="save-btn">Salvar</button>
+        </div>
+
+        <div class="miner-controls">
+            <h1>MobileCoin Miner</h1>
+            <div class="status" id="miner-status">Parado</div>
+            <div class="hashrate" id="hash-rate">0 H/s</div>
+            <button id="start-btn" class="btn">Iniciar Mineração</button>
+            <button id="stop-btn" class="btn stop">Parar Mineração</button>
+        </div>
+
+        <div class="miner-logs">
+            <h3>Registros de Mineração</h3>
+            <div id="log-container" class="log-container"></div>
+        </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
