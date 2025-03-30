@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MobileCoin Miner</title>
+    <title>MOB Miner | MobileCoin</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="user-bar">
-            <div class="user-info">
-                <span id="user-nick" contenteditable="true" data-placeholder="Seu Nick"></span>
-                <span id="wallet-address" contenteditable="true" data-placeholder="Endereço da Carteira"></span>
+    <div class="crypto-terminal">
+        <div class="crypto-header">
+            <div class="user-wallet">
+                <div class="crypto-user">
+                    <span class="crypto-label">MINER:</span>
+                    <span id="user-nick" contenteditable="true" data-placeholder="ANON"></span>
+                </div>
+                <div class="crypto-address">
+                    <span class="crypto-label">WALLET:</span>
+                    <span id="wallet-address" contenteditable="true" data-placeholder="0x000...000"></span>
+                </div>
             </div>
-            <div class="wallet-balance">
-                Saldo: <span id="wallet-balance">0.00 MOB</span>
+            <div class="crypto-balance">
+                <div class="balance-display">
+                    <span class="crypto-label">BALANCE:</span>
+                    <span id="wallet-balance">0.00 <span class="crypto-coin">MOB</span></span>
+                </div>
+                <button id="save-btn" class="crypto-btn save">✓</button>
             </div>
-            <button id="save-btn" class="save-btn">Salvar</button>
         </div>
 
-        <div class="miner-controls">
-            <h1>MobileCoin Miner</h1>
-            <div class="status" id="miner-status">Parado</div>
-            <div class="hashrate" id="hash-rate">0 H/s</div>
-            <button id="start-btn" class="btn">Iniciar Mineração</button>
-            <button id="stop-btn" class="btn stop">Parar Mineração</button>
+        <div class="miner-dashboard">
+            <h1 class="crypto-title">MOB<span class="blink">_</span>MINER</h1>
+            
+            <div class="miner-stats">
+                <div class="stat-box">
+                    <div class="stat-label">STATUS</div>
+                    <div id="miner-status" class="stat-value off">OFFLINE</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">HASHRATE</div>
+                    <div id="hash-rate" class="stat-value">0 H/s</div>
+                </div>
+            </div>
+
+            <div class="hash-bar">
+                <div id="hash-progress" class="hash-progress"></div>
+            </div>
+
+            <div class="miner-controls">
+                <button id="start-btn" class="crypto-btn mine-btn">START MINING</button>
+                <button id="stop-btn" class="crypto-btn stop-btn">STOP</button>
+            </div>
         </div>
 
-        <div class="miner-logs">
-            <h3>Registros de Mineração</h3>
+        <div class="crypto-logs">
+            <div class="logs-header">
+                <div class="logs-title">MINING LOGS</div>
+                <div class="logs-time" id="current-time"></div>
+            </div>
             <div id="log-container" class="log-container"></div>
         </div>
     </div>
