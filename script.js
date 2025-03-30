@@ -1,6 +1,6 @@
 // User Data Management
 function loadUserData() {
-    const nick = localStorage.getItem('minerNick') || 'Miner';
+    const nick = localStorage.getItem('minerNick') || 'CRYPTO_MINER';
     const wallet = localStorage.getItem('minerWallet') || '';
     
     document.getElementById('user-nick').textContent = nick;
@@ -15,7 +15,7 @@ function saveUserData() {
     localStorage.setItem('minerNick', nick);
     localStorage.setItem('minerWallet', wallet);
     
-    addLog('Configurações salvas com sucesso');
+    addLog('Configurations saved to local storage');
     document.getElementById('wallet-address').textContent = 
         wallet.length > 10 ? wallet.substring(0, 6) + '...' + wallet.substring(wallet.length - 4) : wallet;
 }
@@ -30,36 +30,59 @@ function addLog(message) {
     logContainer.scrollTop = logContainer.scrollHeight;
 }
 
-// Miner Simulation
+// Mining Simulation
 let miningInterval;
-let fakeHashrate = 0;
+let currentHashrate = 0;
+const maxHashrate = 100;
 
 function startMining() {
-    document.getElementById('miner-status').textContent = "Minerando";
-    document.getElementById('miner-status').style.color = "#2ecc71";
+    document.getElementById('miner-status').textContent = "ONLINE";
+    document.getElementById('miner-status').className = "stat-value on";
     
-    fakeHashrate = Math.floor(Math.random() * 100) + 50;
-    updateHashrate();
+    // Start with random hashrate
+    currentHashrate = Math.floor(Math.random() * 30) + 20;
+    updateMiningDisplay();
     
     miningInterval = setInterval(() => {
-        fakeHashrate += Math.floor(Math.random() * 20) - 10;
-        if(fakeHashrate < 30) fakeHashrate = 30;
-        updateHashrate();
-    }, 2000);
+        // Random hashrate fluctuation
+        const fluctuation = Math.floor(Math.random() * 20) - 10;
+        currentHashrate = Math.min(maxHashrate, Math.max(10, currentHashrate + fluctuation));
+        updateMiningDisplay();
+    }, 1500);
     
-    addLog('Mineração iniciada');
+    addLog('Mining started - MOB blockchain connected');
+    addLog(`Initial hashrate: ${currentHashrate} H/s`);
 }
 
 function stopMining() {
     clearInterval(miningInterval);
-    document.getElementById('miner-status').textContent = "Parado";
-    document.getElementById('miner-status').style.color = "#e74c3c";
+    document.getElementById('miner-status').textContent = "OFFLINE";
+    document.getElementById('miner-status').className = "stat-value off";
     document.getElementById('hash-rate').textContent = "0 H/s";
-    addLog('Mineração parada');
+    document.getElementById('hash-progress').style.width = '0%';
+    currentHashrate = 0;
+    addLog('Mining stopped');
 }
 
-function updateHashrate() {
-    document.getElementById('hash-rate').textContent = `${fakeHashrate} H/s`;
+function updateMiningDisplay() {
+    document.getElementById('hash-rate').textContent = `${currentHashrate} H/s`;
+    const progressPercent = (currentHashrate / maxHashrate) * 100;
+    document.getElementById('hash-progress').style.width = `${progressPercent}%`;
+    
+    // Change color based on hashrate
+    if(currentHashrate > 70) {
+        document.getElementById('hash-progress').style.background = 'linear-gradient(90deg, var(--crypto-primary), #00ff00)';
+    } else if(currentHashrate > 40) {
+        document.getElementById('hash-progress').style.background = 'linear-gradient(90deg, var(--crypto-primary), var(--crypto-secondary))';
+    } else {
+        document.getElementById('hash-progress').style.background = 'linear-gradient(90deg, var(--crypto-primary), #ff5555)';
+    }
+}
+
+// Update current time
+function updateTime() {
+    const now = new Date();
+    document.getElementById('current-time').textContent = now.toLocaleTimeString();
 }
 
 // Event Listeners
@@ -96,5 +119,10 @@ document.getElementById('stop-btn').addEventListener('click', stopMining);
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     loadUserData();
-    addLog('Sistema pronto. Configure seu nick e carteira.');
+    addLog('MOB Miner v1.0 initialized');
+    addLog('Configure your miner nickname and wallet address');
+    
+    // Update time every second
+    setInterval(updateTime, 1000);
+    updateTime();
 });
